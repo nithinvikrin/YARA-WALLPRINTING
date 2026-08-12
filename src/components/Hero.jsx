@@ -1,8 +1,38 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, ShieldCheck, Paintbrush, Cpu, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sparkles, ArrowRight, ShieldCheck, Paintbrush, Cpu, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Hero({ onOpenQuote }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroSlides = [
+    {
+      image: '/images/hero_wall_printer.png',
+      tag: 'Live Tech',
+      title: 'Precision Direct-To-Wall Vertical Printing Technology',
+      subtitle: '2880 DPI Ultra-High Resolution Output',
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80',
+      tag: 'Residential',
+      title: 'Custom Feature Walls & High-Impact Murals',
+      subtitle: 'Transform Living Rooms, Bedrooms & Nurseries',
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1000&q=80',
+      tag: 'Commercial',
+      title: 'Corporate Office Branding & Retail Visuals',
+      subtitle: 'Durable, Instant UV-Cured Washable Surface Ink',
+    },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 3800);
+    return () => clearInterval(timer);
+  }, [heroSlides.length]);
+
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -110,7 +140,7 @@ export default function Hero({ onOpenQuote }) {
             </div>
           </motion.div>
 
-          {/* Right Column: Hero Visual Container */}
+          {/* Right Column: Auto-Scrolling 3 Image Visual Slider */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -121,28 +151,76 @@ export default function Hero({ onOpenQuote }) {
               {/* Outer Glow frame */}
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#CF9F0E]/30 to-[#080533]/10 blur-xl opacity-75" />
               
-              <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-2xl">
-                <img
-                  src="/images/hero_wall_printer.png"
-                  alt="State of the art vertical wall printer operating on custom mural artwork"
-                  className="w-full h-[320px] sm:h-[420px] lg:h-[500px] object-cover object-center"
-                />
-                
-                {/* Image Overlay badge */}
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-[#080533]/90 backdrop-blur-md border border-[#CF9F0E]/40 flex items-center justify-between shadow-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#CF9F0E] flex items-center justify-center text-[#080533] font-bold">
-                      <CheckCircle2 className="w-6 h-6" />
+              <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-2xl group">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.6 }}
+                    className="relative w-full h-[320px] sm:h-[420px] lg:h-[500px]"
+                  >
+                    <img
+                      src={heroSlides[currentSlide].image}
+                      alt={heroSlides[currentSlide].title}
+                      className="w-full h-full object-cover object-center"
+                    />
+                    
+                    {/* Bottom One-Line Matter Overlay Badge */}
+                    <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-[#080533]/90 backdrop-blur-md border border-[#CF9F0E]/40 flex items-center justify-between shadow-xl">
+                      <div className="flex items-center gap-3 pr-2 overflow-hidden">
+                        <div className="w-10 h-10 rounded-full bg-[#CF9F0E] fill-[#080533] flex items-center justify-center text-[#080533] font-bold shrink-0">
+                          <CheckCircle2 className="w-6 h-6" />
+                        </div>
+                        <div className="truncate">
+                          <div className="text-sm font-extrabold text-white truncate">
+                            {heroSlides[currentSlide].title}
+                          </div>
+                          <div className="text-xs text-slate-300 truncate">
+                            {heroSlides[currentSlide].subtitle}
+                          </div>
+                        </div>
+                      </div>
+                      <span className="text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded bg-[#CF9F0E]/20 text-[#CF9F0E] uppercase tracking-wider shrink-0">
+                        {heroSlides[currentSlide].tag}
+                      </span>
                     </div>
-                    <div>
-                      <div className="text-sm font-bold text-white">Direct-To-Wall UV Printing</div>
-                      <div className="text-xs text-slate-300">Scratch & light resistant finish</div>
-                    </div>
-                  </div>
-                  <span className="text-xs font-extrabold px-2.5 py-1 rounded bg-[#CF9F0E]/20 text-[#CF9F0E] uppercase tracking-wider">
-                    Live Tech
-                  </span>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Slider Controls: Dots & Arrows */}
+                <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
+                  <button
+                    onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
+                    className="w-8 h-8 rounded-full bg-black/50 text-white hover:bg-[#CF9F0E] hover:text-[#080533] flex items-center justify-center transition-colors shadow-md"
+                    aria-label="Previous Slide"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
+                    className="w-8 h-8 rounded-full bg-black/50 text-white hover:bg-[#CF9F0E] hover:text-[#080533] flex items-center justify-center transition-colors shadow-md"
+                    aria-label="Next Slide"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
                 </div>
+
+                {/* Bottom Dots Indicator */}
+                <div className="absolute top-4 left-4 flex items-center gap-1.5 z-20 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+                  {heroSlides.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`h-2 rounded-full transition-all ${
+                        currentSlide === idx ? 'w-6 bg-[#CF9F0E]' : 'w-2 bg-white/60 hover:bg-white'
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
               </div>
             </div>
           </motion.div>
