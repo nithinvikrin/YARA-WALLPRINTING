@@ -1,227 +1,144 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowRight, ShieldCheck, Paintbrush, Cpu, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles, ArrowRight, ShieldCheck, Paintbrush, Cpu, CheckCircle2 } from 'lucide-react';
 
 export default function Hero({ onOpenQuote }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const heroSlides = [
-    {
-      image: '/images/hero_wall_printer.png',
-      tag: 'Live Tech',
-      title: 'Precision Direct-To-Wall Vertical Printing Technology',
-      subtitle: '2880 DPI Ultra-High Resolution Output',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80',
-      tag: 'Residential',
-      title: 'Custom Feature Walls & High-Impact Murals',
-      subtitle: 'Transform Living Rooms, Bedrooms & Nurseries',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1000&q=80',
-      tag: 'Commercial',
-      title: 'Corporate Office Branding & Retail Visuals',
-      subtitle: 'Durable, Instant UV-Cured Washable Surface Ink',
-    },
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 3800);
-    return () => clearInterval(timer);
-  }, [heroSlides.length]);
-
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="home" className="relative min-h-screen pt-28 pb-16 flex items-center overflow-hidden bg-white text-[#080533]">
-      {/* Background Decorative Subtle Gradients */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#CF9F0E]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-[400px] h-[400px] bg-slate-100/50 rounded-full blur-[100px] pointer-events-none" />
-      
-      {/* Grid pattern overlay */}
+    <section 
+      id="home" 
+      className="relative min-h-[620px] lg:h-[650px] pt-24 lg:pt-20 pb-12 lg:pb-0 flex items-center bg-white text-[#080533] overflow-hidden"
+    >
+      {/* Subtle warm neutral glow background accent behind right image */}
       <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(#080533 1px, transparent 1px)`,
-          backgroundSize: '32px 32px'
-        }}
+        className="absolute top-1/2 right-0 -translate-y-1/2 w-[700px] h-[550px] rounded-full blur-[140px] pointer-events-none"
+        style={{ background: 'rgba(207, 159, 14, 0.04)' }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      {/* Main 1200px max-width container */}
+      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 w-full relative z-10">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* Left Column: Text & CTAs */}
+          {/* LEFT CONTENT AREA: 42% width on desktop (~520px) */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-7 space-y-8 text-center lg:text-left"
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5 space-y-5 text-center lg:text-left max-w-[520px] mx-auto lg:mx-0"
           >
-            {/* Pill badge */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#080533]/5 border border-[#CF9F0E]/40 text-xs sm:text-sm font-extrabold text-[#CF9F0E] shadow-sm uppercase tracking-wider"
-            >
-              <Sparkles className="w-4 h-4 text-[#CF9F0E] animate-pulse" />
+            {/* 1. Small Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#CF9F0E] text-[#CF9F0E] bg-white text-[12px] font-semibold tracking-wider uppercase shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#CF9F0E] animate-pulse" />
               <span>Next-Gen Direct Wall Printing Technology</span>
-            </motion.div>
+            </div>
 
-            {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold text-[#080533] leading-[1.1] font-heading tracking-tight">
-              Transform Your Walls Into{' '}
-              <span className="text-[#CF9F0E]">
-                Something Remarkable
+            {/* 2. Main Headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-[64px] leading-[1.05] lg:leading-[1.02] font-extrabold text-[#080533] font-heading tracking-[-2px] max-w-[520px]">
+              Transform Your Walls{' '}
+              <span className="text-[#CF9F0E] block sm:inline lg:block">
+                Into Something Remarkable
               </span>
             </h1>
 
-            {/* Supporting Text */}
-            <p className="text-lg sm:text-xl text-[#526079] max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0">
+            {/* 3. Description */}
+            <p className="text-[15px] sm:text-[17px] leading-[1.7] text-[#526079] max-w-[500px] font-normal mx-auto lg:mx-0 pt-1">
               Professional wall printing for homes, businesses and creative spaces — bringing custom designs directly onto your walls with stunning precision.
             </p>
 
-            {/* Key Value Proposition Pills */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#080533]">
+            {/* 4. Feature Row */}
+            <div className="flex flex-wrap justify-center lg:justify-start items-center gap-5 pt-1 text-[13px] font-semibold text-[#080533]">
+              <div className="flex items-center gap-2">
                 <Cpu className="w-4 h-4 text-[#CF9F0E]" />
                 <span>Wall Printing</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#080533]">
+              <div className="flex items-center gap-2">
                 <Paintbrush className="w-4 h-4 text-[#CF9F0E]" />
                 <span>Custom Design</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-[#080533]">
+              <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#CF9F0E]" />
                 <span>Professional Installation</span>
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            {/* 5. CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
               <button
                 onClick={onOpenQuote}
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#CF9F0E] hover:bg-[#b88b0a] text-[#080533] font-bold text-base shadow-xl shadow-[#CF9F0E]/25 hover:scale-[1.03] transition-all flex items-center justify-center gap-3 group"
+                className="w-full sm:w-auto h-[56px] px-[30px] rounded-full bg-[#CF9F0E] hover:bg-[#b88b0a] text-[#080533] font-bold text-[15px] shadow-lg shadow-[#CF9F0E]/20 hover:scale-[1.02] transition-all flex items-center justify-center gap-2.5 group cursor-pointer"
               >
                 <span>Get a Quote</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
               <button
                 onClick={() => scrollToSection('work')}
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-white hover:bg-slate-50 text-[#080533] font-bold text-base border-2 border-[#080533] transition-all shadow-sm flex items-center justify-center gap-2"
+                className="w-full sm:w-auto h-[56px] px-[30px] rounded-full bg-white hover:bg-slate-50 text-[#080533] font-bold text-[15px] border border-[#D7D7D7] transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>View Our Work</span>
               </button>
             </div>
 
-            {/* Social Trust Metrics */}
-            <div className="pt-6 border-t border-slate-200 flex items-center justify-center lg:justify-start gap-8">
-              <div>
-                <div className="text-2xl font-extrabold text-[#080533] font-heading">500+</div>
-                <div className="text-xs text-[#526079] font-semibold">Walls Printed</div>
+            {/* 6. Statistics Row */}
+            <div className="pt-6 border-t border-slate-200 grid grid-cols-3 divide-x divide-slate-200 text-center lg:text-left mt-6">
+              <div className="pr-3">
+                <div className="text-[24px] sm:text-[26px] font-extrabold text-[#080533] font-heading leading-none">500+</div>
+                <div className="text-[11px] text-[#6B7280] font-medium mt-1">Walls Printed</div>
               </div>
-              <div className="h-8 w-px bg-slate-200" />
-              <div>
-                <div className="text-2xl font-extrabold text-[#CF9F0E] font-heading">100%</div>
-                <div className="text-xs text-[#526079] font-semibold">Eco UV Ink</div>
+              <div className="px-3">
+                <div className="text-[24px] sm:text-[26px] font-extrabold text-[#CF9F0E] font-heading leading-none">100%</div>
+                <div className="text-[11px] text-[#6B7280] font-medium mt-1">Eco UV Ink</div>
               </div>
-              <div className="h-8 w-px bg-slate-200" />
-              <div>
-                <div className="text-2xl font-extrabold text-[#080533] font-heading">12+ Yrs</div>
-                <div className="text-xs text-[#526079] font-semibold">Color Durability</div>
+              <div className="pl-3">
+                <div className="text-[24px] sm:text-[26px] font-extrabold text-[#080533] font-heading leading-none">12+ Yrs</div>
+                <div className="text-[11px] text-[#6B7280] font-medium mt-1">Color Durability</div>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Auto-Scrolling 3 Image Visual Slider */}
+          {/* RIGHT VISUAL AREA: 58% width on desktop (~680px x 560px) */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-5 relative"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-7 relative flex justify-end"
           >
-            <div className="relative mx-auto max-w-lg lg:max-w-none">
-              {/* Outer Glow frame */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#CF9F0E]/30 to-[#080533]/10 blur-xl opacity-75" />
+            <div className="relative w-full lg:w-[680px] h-[320px] sm:h-[450px] lg:h-[560px] rounded-[28px] overflow-hidden shadow-2xl bg-slate-100 group border border-slate-200">
               
-              <div className="relative rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-2xl group">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.6 }}
-                    className="relative w-full h-[320px] sm:h-[420px] lg:h-[500px]"
-                  >
-                    <img
-                      src={heroSlides[currentSlide].image}
-                      alt={heroSlides[currentSlide].title}
-                      className="w-full h-full object-cover object-center"
-                    />
-                    
-                    {/* Bottom One-Line Matter Overlay Badge */}
-                    <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-[#080533]/90 backdrop-blur-md border border-[#CF9F0E]/40 flex items-center justify-between shadow-xl">
-                      <div className="flex items-center gap-3 pr-2 overflow-hidden">
-                        <div className="w-10 h-10 rounded-full bg-[#CF9F0E] fill-[#080533] flex items-center justify-center text-[#080533] font-bold shrink-0">
-                          <CheckCircle2 className="w-6 h-6" />
-                        </div>
-                        <div className="truncate">
-                          <div className="text-sm font-extrabold text-white truncate">
-                            {heroSlides[currentSlide].title}
-                          </div>
-                          <div className="text-xs text-slate-300 truncate">
-                            {heroSlides[currentSlide].subtitle}
-                          </div>
-                        </div>
-                      </div>
-                      <span className="text-[10px] sm:text-xs font-extrabold px-2.5 py-1 rounded bg-[#CF9F0E]/20 text-[#CF9F0E] uppercase tracking-wider shrink-0">
-                        {heroSlides[currentSlide].tag}
-                      </span>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+              {/* Premium photorealistic interior image with direct wall printing mural */}
+              <img
+                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=80"
+                alt="Luxury modern living room with custom direct-to-wall printed botanical mural"
+                className="w-full h-full object-cover object-right group-hover:scale-103 transition-transform duration-700"
+              />
 
-                {/* Slider Controls: Dots & Arrows */}
-                <div className="absolute top-4 right-4 flex items-center gap-2 z-20">
-                  <button
-                    onClick={() => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)}
-                    className="w-8 h-8 rounded-full bg-black/50 text-white hover:bg-[#CF9F0E] hover:text-[#080533] flex items-center justify-center transition-colors shadow-md"
-                    aria-label="Previous Slide"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setCurrentSlide((prev) => (prev + 1) % heroSlides.length)}
-                    className="w-8 h-8 rounded-full bg-black/50 text-white hover:bg-[#CF9F0E] hover:text-[#080533] flex items-center justify-center transition-colors shadow-md"
-                    aria-label="Next Slide"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
+              {/* Left Edge Smooth White Fade Effect Gradient */}
+              <div 
+                className="hidden lg:block absolute inset-y-0 left-0 w-[45%] pointer-events-none z-10"
+                style={{
+                  background: 'linear-gradient(90deg, #FFFFFF 0%, rgba(255,255,255,0.92) 12%, rgba(255,255,255,0.45) 32%, rgba(255,255,255,0) 100%)'
+                }}
+              />
+
+              {/* Bottom Right Quality Verification Badge */}
+              <div className="absolute bottom-5 right-5 z-20 p-4 rounded-2xl bg-[#080533]/90 backdrop-blur-md border border-[#CF9F0E]/40 shadow-xl flex items-center gap-3.5 max-w-[340px]">
+                <div className="w-10 h-10 rounded-xl bg-[#CF9F0E] text-[#080533] flex items-center justify-center font-bold shrink-0 shadow-md">
+                  <CheckCircle2 className="w-6 h-6" />
                 </div>
-
-                {/* Bottom Dots Indicator */}
-                <div className="absolute top-4 left-4 flex items-center gap-1.5 z-20 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
-                  {heroSlides.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentSlide(idx)}
-                      className={`h-2 rounded-full transition-all ${
-                        currentSlide === idx ? 'w-6 bg-[#CF9F0E]' : 'w-2 bg-white/60 hover:bg-white'
-                      }`}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
+                <div>
+                  <div className="text-[13px] font-extrabold text-white font-heading">
+                    Direct-To-Wall UV Printing
+                  </div>
+                  <div className="text-[11px] text-slate-300">
+                    2880 DPI scratch & fade resistant ink finish
+                  </div>
                 </div>
-
               </div>
+
             </div>
           </motion.div>
 
