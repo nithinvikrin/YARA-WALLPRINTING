@@ -21,15 +21,12 @@ export default function Footer({ onOpenQuote }) {
           
           {/* Col 1 & 2: Brand Info */}
           <div className="lg:col-span-2 space-y-6">
-            <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="inline-flex items-center gap-2.5">
+            <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="inline-flex items-center">
               <img
-                src="/logo-icon.svg"
-                alt="YARA Wall Printers Logo"
-                className="w-10 h-10 rounded-xl shadow-lg"
+                src="/images/logo.png"
+                alt="YARA Wall Printing Logo"
+                className="h-12 sm:h-14 w-auto object-contain"
               />
-              <span className="font-extrabold tracking-wider text-xl text-white font-heading">
-                YARA<span className="text-[#CF9F0E] ml-1">WALLPRINTING</span>
-              </span>
             </a>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
@@ -162,7 +159,21 @@ export default function Footer({ onOpenQuote }) {
       {/* Bottom Bar */}
       <div className="border-t border-white/10 py-6 bg-black/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-medium">
-          <p>© 2026 WALL PRINTING. All Rights Reserved.</p>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+            <p>© 2026 YARA WALL PRINTING. All Rights Reserved.</p>
+            <span className="hidden sm:inline text-slate-600">|</span>
+            <p>
+              Designed & Developed by{' '}
+              <a
+                href="https://www.vikrin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#CF9F0E] hover:underline font-semibold"
+              >
+                Vikrin Pvt Ltd
+              </a>
+            </p>
+          </div>
           
           <div className="flex items-center gap-6">
             <a href="#privacy" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors">

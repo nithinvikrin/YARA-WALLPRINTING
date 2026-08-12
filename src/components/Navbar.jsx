@@ -57,33 +57,25 @@ export default function Navbar({ onOpenQuote }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 h-[72px] flex items-center transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 h-[88px] sm:h-[96px] flex items-center transition-all duration-300 ${
         isScrolled
           ? 'bg-[#080533]/95 backdrop-blur-md shadow-xl border-b border-[#CF9F0E]/20'
           : 'bg-[#080533]'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex items-center justify-between">
           {/* Left: Brand Logo */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
-            className="flex items-center gap-2.5 group"
+            className="flex items-center group py-1"
           >
             <img
-              src="/logo-icon.svg"
-              alt="YARA Wall Printers Logo"
-              className="w-10 h-10 rounded-xl shadow-lg shadow-[#CF9F0E]/20 group-hover:scale-105 transition-transform"
+              src="/images/logo.png"
+              alt="YARA Wall Printing Logo"
+              className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto max-h-[72px] sm:max-h-[80px] object-contain transition-transform group-hover:scale-105"
             />
-            <div className="flex flex-col">
-              <span className="font-extrabold tracking-wider text-xl text-white font-heading">
-                YARA<span className="text-[#CF9F0E] ml-1">WALLPRINTING</span>
-              </span>
-              <span className="text-[10px] tracking-widest text-slate-400 uppercase font-medium -mt-1">
-                Precision Direct-To-Wall
-              </span>
-            </div>
           </a>
 
           {/* Center: Desktop Navigation */}

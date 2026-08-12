@@ -9,7 +9,7 @@ export default function Hero({ onOpenQuote }) {
   };
 
   return (
-    <section id="home" className="pt-24 lg:pt-[104px] pb-12 bg-white text-[#080533]">
+    <section id="home" className="pt-28 sm:pt-32 lg:pt-[120px] pb-12 bg-white text-[#080533]">
       <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Outer Hero Card Container */}
