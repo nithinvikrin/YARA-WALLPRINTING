@@ -39,12 +39,12 @@ export default function QuoteModal({ isOpen, onClose }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto">
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
-          className="bg-[#080533] border border-[#CF9F0E]/40 rounded-3xl overflow-hidden max-w-xl w-full shadow-2xl relative glass-panel p-6 sm:p-8"
+          className="bg-[#080533] border border-[#CF9F0E]/40 rounded-2xl sm:rounded-3xl max-w-xl w-full shadow-2xl relative glass-panel p-4 sm:p-8 my-auto max-h-[92vh] overflow-y-auto"
         >
           {/* Close button */}
           <button

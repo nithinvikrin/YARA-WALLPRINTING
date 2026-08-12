@@ -38,8 +38,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-14 sm:py-20 lg:py-24 bg-white text-[#080533] relative border-t border-[#E5E5E5]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="py-12 sm:py-16 lg:py-24 bg-white text-[#080533] relative border-t border-[#E5E5E5] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 w-full">
         
         <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
           
@@ -49,18 +49,18 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-5 space-y-8"
+            className="lg:col-span-5 space-y-6 sm:space-y-8"
           >
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080533]/5 border border-[#CF9F0E]/40 text-xs font-extrabold text-[#CF9F0E] uppercase tracking-wider">
                 <span>GET IN TOUCH</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-heading text-[#080533]">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading text-[#080533] tracking-tight">
                 Let's Transform Your Space
               </h2>
 
-              <p className="text-[#526079] text-base sm:text-lg leading-relaxed">
+              <p className="text-[#526079] text-xs sm:text-base lg:text-lg leading-relaxed">
                 Tell us about your wall printing project and our specialist team will get back to you with wall preparation advice, artwork sizing, and a custom estimate.
               </p>
             </div>
