@@ -65,18 +65,20 @@ export default function Navbar({ onOpenQuote }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Left: Text Logo */}
+          {/* Left: Brand Logo */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2.5 group"
           >
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#CF9F0E] to-[#9B7300] flex items-center justify-center text-[#080533] font-black text-xl shadow-lg shadow-[#CF9F0E]/20 group-hover:scale-105 transition-transform">
-              W
-            </div>
+            <img
+              src="/logo-icon.svg"
+              alt="YARA Wall Printers Logo"
+              className="w-10 h-10 rounded-xl shadow-lg shadow-[#CF9F0E]/20 group-hover:scale-105 transition-transform"
+            />
             <div className="flex flex-col">
               <span className="font-extrabold tracking-wider text-xl text-white font-heading">
-                WALL<span className="text-[#CF9F0E]">PRINTING</span>
+                YARA<span className="text-[#CF9F0E] ml-1">WALLPRINTING</span>
               </span>
               <span className="text-[10px] tracking-widest text-slate-400 uppercase font-medium -mt-1">
                 Precision Direct-To-Wall

@@ -21,12 +21,14 @@ export default function Footer({ onOpenQuote }) {
           
           {/* Col 1 & 2: Brand Info */}
           <div className="lg:col-span-2 space-y-6">
-            <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="inline-flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#CF9F0E] to-[#9B7300] flex items-center justify-center text-[#080533] font-black text-xl shadow-lg">
-                W
-              </div>
+            <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="inline-flex items-center gap-2.5">
+              <img
+                src="/logo-icon.svg"
+                alt="YARA Wall Printers Logo"
+                className="w-10 h-10 rounded-xl shadow-lg"
+              />
               <span className="font-extrabold tracking-wider text-xl text-white font-heading">
-                WALL<span className="text-[#CF9F0E]">PRINTING</span>
+                YARA<span className="text-[#CF9F0E] ml-1">WALLPRINTING</span>
               </span>
             </a>
 
