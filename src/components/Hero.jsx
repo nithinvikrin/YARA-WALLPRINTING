@@ -11,46 +11,47 @@ export default function Hero({ onOpenQuote }) {
   return (
     <section 
       id="home" 
-      className="relative min-h-[620px] lg:h-[650px] pt-24 lg:pt-20 pb-12 lg:pb-0 flex items-center bg-white text-[#080533] overflow-hidden"
+      className="relative min-h-[calc(100vh-72px)] pt-[116px] lg:pt-[124px] pb-12 lg:pb-16 flex items-center bg-white text-[#080533] overflow-hidden"
     >
-      {/* Subtle warm neutral glow background accent behind right image */}
+      {/* Subtle warm neutral background accent */}
       <div 
         className="absolute top-1/2 right-0 -translate-y-1/2 w-[700px] h-[550px] rounded-full blur-[140px] pointer-events-none"
         style={{ background: 'rgba(207, 159, 14, 0.04)' }}
       />
 
-      {/* Main 1200px max-width container */}
-      <div className="max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-10 w-full relative z-10">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      {/* Main 1440px max-width container with 72px padding on desktop */}
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-[72px] w-full relative z-10">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
           
-          {/* LEFT CONTENT AREA: 42% width on desktop (~520px) */}
+          {/* LEFT CONTENT COLUMN: Max width 570px */}
           <motion.div 
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-5 space-y-5 text-center lg:text-left max-w-[520px] mx-auto lg:mx-0"
+            className="w-full max-w-[570px] space-y-6 text-center lg:text-left mx-auto lg:mx-0 min-w-0"
           >
-            {/* 1. Small Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#CF9F0E] text-[#CF9F0E] bg-white text-[12px] font-semibold tracking-wider uppercase shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-[#CF9F0E] animate-pulse" />
-              <span>Next-Gen Direct Wall Printing Technology</span>
+            {/* 1. Badge (positioned 45-50px below navbar with 22px margin bottom) */}
+            <div className="mb-[22px]">
+              <div className="inline-flex items-center gap-2 px-[14px] py-[8px] rounded-full border border-[#CF9F0E] text-[#CF9F0E] bg-white text-[12px] font-semibold tracking-wider uppercase shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-[#CF9F0E] animate-pulse" />
+                <span>Next-Gen Direct Wall Printing Technology</span>
+              </div>
             </div>
 
-            {/* 2. Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[64px] leading-[1.05] lg:leading-[1.02] font-extrabold text-[#080533] font-heading tracking-[-2px] max-w-[520px]">
-              Transform Your Walls{' '}
-              <span className="text-[#CF9F0E] block sm:inline lg:block">
-                Into Something Remarkable
-              </span>
+            {/* 2. Headline (Natural 2-line wrapping on desktop) */}
+            <h1 className="text-3xl sm:text-5xl lg:text-[64px] leading-[1.02] font-extrabold text-[#080533] font-heading tracking-[-2px] max-w-[560px] mx-auto lg:mx-0">
+              Transform Your Walls
+              <br className="hidden sm:inline" />
+              {' '}Into <span className="text-[#CF9F0E]">Something Remarkable</span>
             </h1>
 
-            {/* 3. Description */}
-            <p className="text-[15px] sm:text-[17px] leading-[1.7] text-[#526079] max-w-[500px] font-normal mx-auto lg:mx-0 pt-1">
+            {/* 3. Description (max-width 520px) */}
+            <p className="text-[15px] sm:text-[17px] leading-[1.7] text-[#526079] max-w-[520px] font-normal mx-auto lg:mx-0 pt-1">
               Professional wall printing for homes, businesses and creative spaces — bringing custom designs directly onto your walls with stunning precision.
             </p>
 
-            {/* 4. Feature Row */}
-            <div className="flex flex-wrap justify-center lg:justify-start items-center gap-5 pt-1 text-[13px] font-semibold text-[#080533]">
+            {/* 4. Features (Horizontal row on desktop, gap 24px) */}
+            <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 pt-1 text-[13px] font-semibold text-[#080533]">
               <div className="flex items-center gap-2">
                 <Cpu className="w-4 h-4 text-[#CF9F0E]" />
                 <span>Wall Printing</span>
@@ -65,7 +66,7 @@ export default function Hero({ onOpenQuote }) {
               </div>
             </div>
 
-            {/* 5. CTA Buttons */}
+            {/* 5. CTA Buttons (56px height, gap 16px) */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
               <button
                 onClick={onOpenQuote}
@@ -77,13 +78,13 @@ export default function Hero({ onOpenQuote }) {
 
               <button
                 onClick={() => scrollToSection('work')}
-                className="w-full sm:w-auto h-[56px] px-[30px] rounded-full bg-white hover:bg-slate-50 text-[#080533] font-bold text-[15px] border border-[#D7D7D7] transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto h-[56px] px-[30px] rounded-full bg-white hover:bg-slate-50 text-[#080533] font-bold text-[15px] border border-[#D8D8D8] transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>View Our Work</span>
               </button>
             </div>
 
-            {/* 6. Statistics Row */}
+            {/* 6. Statistics Grid (3 columns with subtle vertical dividers) */}
             <div className="pt-6 border-t border-slate-200 grid grid-cols-3 divide-x divide-slate-200 text-center lg:text-left mt-6">
               <div className="pr-3">
                 <div className="text-[24px] sm:text-[26px] font-extrabold text-[#080533] font-heading leading-none">500+</div>
@@ -100,23 +101,23 @@ export default function Hero({ onOpenQuote }) {
             </div>
           </motion.div>
 
-          {/* RIGHT VISUAL AREA: 58% width on desktop (~680px x 560px) */}
+          {/* RIGHT VISUAL COLUMN: Max width 700px x 570px */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-7 relative flex justify-end"
+            className="w-full flex justify-end"
           >
-            <div className="relative w-full lg:w-[680px] h-[320px] sm:h-[450px] lg:h-[560px] rounded-[28px] overflow-hidden shadow-2xl bg-slate-100 group border border-slate-200">
+            <div className="relative w-full max-w-[700px] h-[340px] sm:h-[460px] lg:h-[570px] rounded-[28px] overflow-hidden shadow-2xl bg-slate-100 group border border-slate-200">
               
-              {/* Premium photorealistic interior image with direct wall printing mural */}
+              {/* Premium Architectural Photography Image */}
               <img
                 src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=80"
-                alt="Luxury modern living room with custom direct-to-wall printed botanical mural"
+                alt="Modern luxury interior with direct-to-wall printed botanical mural"
                 className="w-full h-full object-cover object-right group-hover:scale-103 transition-transform duration-700"
               />
 
-              {/* Left Edge Smooth White Fade Effect Gradient */}
+              {/* Smooth Left Edge White Fade Gradient Mask */}
               <div 
                 className="hidden lg:block absolute inset-y-0 left-0 w-[45%] pointer-events-none z-10"
                 style={{
@@ -124,8 +125,8 @@ export default function Hero({ onOpenQuote }) {
                 }}
               />
 
-              {/* Bottom Right Quality Verification Badge */}
-              <div className="absolute bottom-5 right-5 z-20 p-4 rounded-2xl bg-[#080533]/90 backdrop-blur-md border border-[#CF9F0E]/40 shadow-xl flex items-center gap-3.5 max-w-[340px]">
+              {/* Dark Navy Information Card (360px width, bottom 24px, right 24px) */}
+              <div className="absolute bottom-6 right-6 z-20 p-4 rounded-[20px] bg-[#080533] text-white border border-[#CF9F0E]/40 shadow-xl flex items-center gap-3.5 max-w-[360px]">
                 <div className="w-10 h-10 rounded-xl bg-[#CF9F0E] text-[#080533] flex items-center justify-center font-bold shrink-0 shadow-md">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
