@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, Printer, PenTool, UserCheck, Box, Leaf, ShieldCheck } from 'lucide-react';
+import { Sparkles, ArrowRight, Printer, PenTool, UserCheck, Box, Leaf, ShieldCheck, Play } from 'lucide-react';
 
 export default function Hero({ heroData, onOpenQuote }) {
   const scrollToSection = (id) => {
@@ -17,34 +17,46 @@ export default function Hero({ heroData, onOpenQuote }) {
   const mainDesc = heroData?.description || 'Professional wall printing for homes, businesses and creative spaces — bringing custom designs directly onto your walls with stunning precision.';
   const mainImage = getImageUrl(heroData?.image_url);
   const mobileImage = heroData?.mobile_image_url ? getImageUrl(heroData.mobile_image_url) : null;
+  const videoUrl = heroData?.video_url || '/hero-video.mp4';
 
   return (
-    <section id="home" className="px-3 py-4 md:px-6 lg:px-8 lg:py-8 pt-24 sm:pt-28 lg:pt-32 bg-white text-[#080533] overflow-hidden">
+    <section id="home" className="px-3 py-4 md:px-6 lg:px-8 lg:py-8 pt-24 sm:pt-28 lg:pt-32 3xl:pt-40 bg-white text-[#080533] overflow-hidden">
       
       {/* ========================================================================= */}
       {/* 1. DESKTOP HERO (768px+) - Wide 16:7 Banner Layout                        */}
       {/* ========================================================================= */}
-      <div className="hidden md:flex relative mx-auto w-full max-w-7xl aspect-[16/7] min-h-[480px] lg:min-h-[560px] overflow-hidden rounded-2xl lg:rounded-[2rem] bg-[#FAF7F2] border border-[#EAE3D6] shadow-xl shadow-slate-200/40 p-6 lg:p-12 items-center">
+      <div className="hidden md:flex relative mx-auto w-full max-w-7xl 2xl:max-w-[1800px] 3xl:max-w-[2400px] aspect-[16/7] min-h-[480px] lg:min-h-[560px] 3xl:min-h-[750px] overflow-hidden rounded-2xl lg:rounded-[2rem] 3xl:rounded-[3rem] bg-[#FAF7F2] border border-[#EAE3D6] shadow-xl shadow-slate-200/40 p-6 lg:p-12 3xl:p-20 items-center">
         
-        {/* Right Side 16:7 Image Banner */}
+        {/* Right Side 16:7 Video/Image Banner */}
         <div className="absolute right-0 top-0 bottom-0 w-[52%] xl:w-[55%] h-full z-0 overflow-hidden">
-          <picture className="w-full h-full">
-            {mobileImage && (
-              <source
-                media="(max-width: 767px)"
-                srcSet={mobileImage}
-              />
-            )}
-            <img
-              src={mainImage}
-              alt={mainTitle}
+          {videoUrl ? (
+            <video
+              src={videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
               className="w-full h-full object-cover object-[50%_center] aspect-[16/7]"
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = '/placeholder-product.svg';
-              }}
             />
-          </picture>
+          ) : (
+            <picture className="w-full h-full">
+              {mobileImage && (
+                <source
+                  media="(max-width: 767px)"
+                  srcSet={mobileImage}
+                />
+              )}
+              <img
+                src={mainImage}
+                alt={mainTitle}
+                className="w-full h-full object-cover object-[50%_center] aspect-[16/7]"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/placeholder-product.svg';
+                }}
+              />
+            </picture>
+          )}
           
           {/* Soft Left Cream Masking */}
           <div 
@@ -60,52 +72,60 @@ export default function Hero({ heroData, onOpenQuote }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="relative z-10 w-[54%] xl:w-[50%] space-y-5 lg:space-y-6"
+          className="relative z-10 w-[54%] xl:w-[50%] space-y-5 lg:space-y-6 3xl:space-y-8"
         >
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F3ECE0] border border-[#D9CDB8] text-xs font-semibold text-[#080533] shadow-xs">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F3ECE0] border border-[#D9CDB8] text-xs 3xl:text-sm font-semibold text-[#080533] shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#CF9F0E] shrink-0" />
               <span>Next-Gen Direct Wall Printing Technology</span>
             </div>
           </div>
 
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-[#080533] leading-[1.08] font-heading tracking-tight max-w-[560px]">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl 3xl:text-7xl font-extrabold text-[#080533] leading-[1.08] font-heading tracking-tight max-w-[560px] 3xl:max-w-[800px]">
             {mainTitle}
           </h1>
 
-          <p className="text-sm md:text-base lg:text-lg leading-relaxed text-[#526079] max-w-[480px] font-normal">
+          <p className="text-sm md:text-base lg:text-lg 3xl:text-xl leading-relaxed text-[#526079] max-w-[480px] 3xl:max-w-[700px] font-normal">
             {mainDesc}
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-1">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#F3ECE0] border border-[#E5DAC6] text-xs font-semibold text-[#080533]">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#F3ECE0] border border-[#E5DAC6] text-xs 3xl:text-sm font-semibold text-[#080533]">
               <Printer className="w-4 h-4 text-[#080533] shrink-0" />
               <span>Wall Printing</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#F3ECE0] border border-[#E5DAC6] text-xs font-semibold text-[#080533]">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#F3ECE0] border border-[#E5DAC6] text-xs 3xl:text-sm font-semibold text-[#080533]">
               <PenTool className="w-4 h-4 text-[#080533] shrink-0" />
               <span>Custom Design</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#F3ECE0] border border-[#E5DAC6] text-xs font-semibold text-[#080533]">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#F3ECE0] border border-[#E5DAC6] text-xs 3xl:text-sm font-semibold text-[#080533]">
               <UserCheck className="w-4 h-4 text-[#080533] shrink-0" />
               <span>Professional Installation</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-4 pt-2">
+          <div className="flex flex-wrap items-center gap-4 pt-2">
             <button
               onClick={onOpenQuote}
-              className="h-[54px] px-8 rounded-2xl bg-[#D9A310] hover:bg-[#c4920c] text-[#080533] font-bold text-sm shadow-md shadow-[#CF9F0E]/20 transition-all flex items-center justify-center gap-2 group cursor-pointer"
+              className="h-[54px] 3xl:h-[64px] px-8 3xl:px-10 rounded-2xl bg-[#D9A310] hover:bg-[#c4920c] text-[#080533] font-bold text-sm 3xl:text-base shadow-md shadow-[#CF9F0E]/20 transition-all flex items-center justify-center gap-2 group cursor-pointer"
             >
               <span>Get a Quote</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 
             <button
-              onClick={() => scrollToSection('work')}
-              className="h-[54px] px-8 rounded-2xl bg-white hover:bg-slate-50 text-[#080533] font-bold text-sm border border-[#DDD6C8] shadow-xs transition-all flex items-center justify-center gap-2 group cursor-pointer"
+              onClick={() => scrollToSection('video')}
+              className="h-[54px] 3xl:h-[64px] px-7 3xl:px-9 rounded-2xl bg-[#080533] hover:bg-[#151052] text-[#CF9F0E] font-bold text-sm 3xl:text-base shadow-md transition-all flex items-center justify-center gap-2 group cursor-pointer border border-[#CF9F0E]/30"
             >
-              <span>View Our Work</span>
+              <Play className="w-4 h-4 text-[#CF9F0E] fill-[#CF9F0E]" />
+              <span>Watch Machine Video</span>
+            </button>
+
+            <button
+              onClick={() => scrollToSection('work')}
+              className="h-[54px] 3xl:h-[64px] px-7 3xl:px-9 rounded-2xl bg-white hover:bg-slate-50 text-[#080533] font-bold text-sm 3xl:text-base border border-[#DDD6C8] shadow-xs transition-all flex items-center justify-center gap-2 group cursor-pointer"
+            >
+              <span>View Work</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
@@ -150,25 +170,36 @@ export default function Hero({ heroData, onOpenQuote }) {
       {/* ========================================================================= */}
       <div className="block md:hidden mx-auto w-full max-w-full space-y-4">
         
-        {/* Compact Mobile Image Banner */}
+        {/* Compact Mobile Video/Image Banner */}
         <div className="relative mx-3 w-auto h-[170px] sm:h-[210px] overflow-hidden rounded-xl bg-[#FAF7F2] border border-[#EAE3D6] shadow-sm">
-          <picture className="w-full h-full">
-            {mobileImage && (
-              <source
-                media="(max-width: 767px)"
-                srcSet={mobileImage}
-              />
-            )}
-            <img
-              src={mainImage}
-              alt={mainTitle}
+          {videoUrl ? (
+            <video
+              src={videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
               className="absolute inset-0 h-full w-full object-cover object-[50%_center]"
-              onError={(e) => {
-                e.currentTarget.onerror = null;
-                e.currentTarget.src = '/placeholder-product.svg';
-              }}
             />
-          </picture>
+          ) : (
+            <picture className="w-full h-full">
+              {mobileImage && (
+                <source
+                  media="(max-width: 767px)"
+                  srcSet={mobileImage}
+                />
+              )}
+              <img
+                src={mainImage}
+                alt={mainTitle}
+                className="absolute inset-0 h-full w-full object-cover object-[50%_center]"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/placeholder-product.svg';
+                }}
+              />
+            </picture>
+          )}
         </div>
 
         {/* Structured Mobile Text Content Below Banner */}

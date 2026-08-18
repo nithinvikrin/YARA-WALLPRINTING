@@ -9,8 +9,8 @@ export default function CTABanner({ onOpenQuote }) {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-white text-[#080533] relative overflow-hidden border-t border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 w-full">
+    <section className="py-12 sm:py-16 lg:py-24 3xl:py-32 bg-white text-[#080533] relative overflow-hidden border-t border-b border-slate-200">
+      <div className="max-w-7xl 2xl:max-w-[1800px] 3xl:max-w-[2400px] mx-auto px-3 sm:px-6 lg:px-8 3xl:px-16 relative z-10 w-full">
         <div className="rounded-2xl sm:rounded-3xl bg-white border border-slate-200 p-5 sm:p-12 lg:p-16 text-center space-y-4 sm:space-y-8 shadow-xs relative overflow-hidden">
           
           {/* Badge */}

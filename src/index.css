@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4xl: 2560px;
+  --breakpoint-uhd: 3840px;
+}
+
 @layer base {
   :root {
     --color-navy: #080533;
@@ -36,6 +42,20 @@
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 }
+
+/* 4K UHD (3840 x 2160) Screen Scaling Adjustments */
+@media (min-width: 2560px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 3840px) {
+  html {
+    font-size: 22px;
+  }
+}
+
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {

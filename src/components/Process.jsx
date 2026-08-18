@@ -37,8 +37,8 @@ export default function Process({ onOpenQuote }) {
   ];
 
   return (
-    <section id="process" className="py-12 sm:py-16 lg:py-24 bg-white text-[#080533] relative border-t border-[#E8E8E8] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 w-full">
+    <section id="process" className="py-12 sm:py-16 lg:py-24 3xl:py-32 bg-white text-[#080533] relative border-t border-[#E8E8E8] overflow-hidden">
+      <div className="max-w-7xl 2xl:max-w-[1800px] 3xl:max-w-[2400px] mx-auto px-3 sm:px-6 lg:px-8 3xl:px-16 relative z-10 w-full">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-8 sm:mb-16">

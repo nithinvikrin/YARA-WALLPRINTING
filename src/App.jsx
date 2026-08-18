@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import VideoShowcase from './components/VideoShowcase';
 import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
 import Portfolio from './components/Portfolio';
@@ -33,6 +34,7 @@ export default function App() {
       <main className="bg-white">
         <Hero onOpenQuote={handleOpenQuote} />
         <About onOpenQuote={handleOpenQuote} />
+        <VideoShowcase onOpenQuote={handleOpenQuote} />
         <Services onOpenQuote={handleOpenQuote} />
         <WhyChooseUs onOpenQuote={handleOpenQuote} />
         <Portfolio onOpenQuote={handleOpenQuote} />

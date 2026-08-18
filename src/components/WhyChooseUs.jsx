@@ -37,11 +37,11 @@ export default function WhyChooseUs({ onOpenQuote }) {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-white text-[#080533] relative overflow-hidden border-t border-b border-[#E5E5E5]">
+    <section className="py-12 sm:py-16 lg:py-24 3xl:py-32 bg-white text-[#080533] relative overflow-hidden border-t border-b border-[#E5E5E5]">
       {/* Background Subtle Accent */}
       <div className="absolute bottom-0 right-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#CF9F0E]/5 rounded-full blur-[100px] sm:blur-[150px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div className="max-w-7xl 2xl:max-w-[1800px] 3xl:max-w-[2400px] mx-auto px-3 sm:px-6 lg:px-8 3xl:px-16 relative z-10 w-full">
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-8 sm:mb-14">

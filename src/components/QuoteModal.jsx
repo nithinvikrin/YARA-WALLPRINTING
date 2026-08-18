@@ -3,9 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calculator, CheckCircle2, Send, Sparkles } from 'lucide-react';
 
 export default function QuoteModal({ isOpen, onClose }) {
-  const [height, setHeight] = useState(2.5); // meters
-  const [width, setWidth] = useState(4.0); // meters
-  const [surface, setSurface] = useState('Plaster / Drywall');
+  const [height, setHeight] = useState(10); // feet
+  const [width, setWidth] = useState(12); // feet
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
 
@@ -16,8 +15,9 @@ export default function QuoteModal({ isOpen, onClose }) {
     notes: '',
   });
 
-  const area = (parseFloat(height || 0) * parseFloat(width || 0)).toFixed(1);
-  const estimatedCost = Math.round(area * 75); // approx €75 / m² base estimate
+  const area = (parseFloat(height || 0) * parseFloat(width || 0)).toFixed(0);
+  const ratePerSqFt = 850;
+  const estimatedCost = Math.round(area * ratePerSqFt);
 
   const handleNextStep = (e) => {
     e.preventDefault();
@@ -63,7 +63,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                 Estimate Submitted!
               </h3>
               <p className="text-slate-300 text-sm">
-                Your project estimate for <span className="text-[#CF9F0E] font-bold">{area} m²</span> surface (~€{estimatedCost}) has been registered. Our estimator will review wall details and reach out.
+                Your project estimate for <span className="text-[#CF9F0E] font-bold">{area} sq. ft.</span> surface (~₹{estimatedCost.toLocaleString('en-IN')}) has been registered. Our estimator will review wall details and reach out.
               </p>
               <button
                 onClick={handleResetClose}
@@ -84,7 +84,7 @@ export default function QuoteModal({ isOpen, onClose }) {
                     Instant Wall Estimate
                   </h3>
                   <p className="text-xs text-slate-300">
-                    Step {step} of 2 — Quick project quote calculator
+                    Step {step} of 2 — Quick project quote calculator (@ ₹850 / sq. ft.)
                   </p>
                 </div>
               </div>
@@ -95,13 +95,13 @@ export default function QuoteModal({ isOpen, onClose }) {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
-                        Wall Height (Meters)
+                        Wall Height (Feet / ft)
                       </label>
                       <input
                         type="number"
-                        step="0.1"
+                        step="0.5"
                         min="1"
-                        max="10"
+                        max="100"
                         value={height}
                         onChange={(e) => setHeight(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white font-bold text-base focus:border-[#CF9F0E] focus:outline-none"
@@ -110,13 +110,13 @@ export default function QuoteModal({ isOpen, onClose }) {
 
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
-                        Wall Width (Meters)
+                        Wall Width (Feet / ft)
                       </label>
                       <input
                         type="number"
-                        step="0.1"
+                        step="0.5"
                         min="1"
-                        max="50"
+                        max="200"
                         value={width}
                         onChange={(e) => setWidth(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white font-bold text-base focus:border-[#CF9F0E] focus:outline-none"
@@ -124,33 +124,16 @@ export default function QuoteModal({ isOpen, onClose }) {
                     </div>
                   </div>
 
-                  {/* Surface Material Selection */}
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
-                      Wall Surface Type
-                    </label>
-                    <select
-                      value={surface}
-                      onChange={(e) => setSurface(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-[#080533] border border-white/15 text-white text-sm focus:border-[#CF9F0E] focus:outline-none"
-                    >
-                      <option value="Plaster / Drywall">Smooth Plaster / Painted Drywall</option>
-                      <option value="Concrete / Brick">Raw Concrete / Exposed Brick</option>
-                      <option value="Wood / MDF">Wood / Timber Paneling / MDF</option>
-                      <option value="Glass / Metal">Glass / Metal / Acrylic</option>
-                      <option value="Textured Wallpaper">Existing Textured Wallpaper</option>
-                    </select>
-                  </div>
-
                   {/* Live Calculation Display Box */}
                   <div className="p-5 rounded-2xl bg-[#CF9F0E]/15 border border-[#CF9F0E]/40 flex items-center justify-between">
                     <div>
                       <span className="text-xs text-slate-300 block font-medium">Estimated Print Surface</span>
-                      <span className="text-2xl font-extrabold text-white font-heading">{area} m²</span>
+                      <span className="text-2xl font-extrabold text-white font-heading">{area} sq. ft.</span>
+                      <span className="text-[11px] text-slate-400 block mt-0.5">Rate: ₹850 / sq. ft.</span>
                     </div>
                     <div className="text-right">
                       <span className="text-xs text-[#CF9F0E] block font-bold uppercase tracking-wider">Estimated Cost</span>
-                      <span className="text-2xl font-extrabold text-[#CF9F0E] font-heading">~ €{estimatedCost}</span>
+                      <span className="text-2xl font-extrabold text-[#CF9F0E] font-heading">₹{estimatedCost.toLocaleString('en-IN')}</span>
                     </div>
                   </div>
 
@@ -164,7 +147,7 @@ export default function QuoteModal({ isOpen, onClose }) {
               ) : (
                 <form onSubmit={handleFinalSubmit} className="space-y-5">
                   <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 flex items-center justify-between">
-                    <span>Selected: <strong className="text-white">{area} m² ({surface})</strong></span>
+                    <span>Selected: <strong className="text-white">{area} sq. ft.</strong> (~₹{estimatedCost.toLocaleString('en-IN')})</span>
                     <button
                       type="button"
                       onClick={() => setStep(1)}

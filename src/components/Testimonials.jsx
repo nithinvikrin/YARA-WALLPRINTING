@@ -12,7 +12,6 @@ export default function Testimonials() {
       company: 'Studio Rostova, Amsterdam',
       rating: 5,
       review: 'The print quality on our clients 15-meter office lobby feature wall exceeded all expectations. Crisp vector line details, zero ink smell, and completed in under 6 hours. Absolutely remarkable technology.',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
     },
     {
       name: 'Marcus Vance',
@@ -20,7 +19,6 @@ export default function Testimonials() {
       company: 'Vance Real Estate Group',
       rating: 5,
       review: 'We converted blank concrete hallway walls into custom branding art across 4 floors. Traditional wallpaper would have peeled; direct printing bonded perfectly to the textured concrete.',
-      avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80',
     },
     {
       name: 'Sophia van Dijk',
@@ -28,7 +26,6 @@ export default function Testimonials() {
       company: 'Residential Villa, Utrecht',
       rating: 5,
       review: 'We had a high-resolution botanical mural printed on our double-height living room wall. Guests are blown away when they touch the wall and realize it’s printed directly on plaster!',
-      avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
     },
   ];
 
@@ -90,12 +87,7 @@ export default function Testimonials() {
                 </div>
 
                 {/* Author Footer */}
-                <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-slate-100 flex items-center gap-3 sm:gap-4">
-                  <img
-                    src={item.avatar}
-                    alt={item.name}
-                    className="w-10 sm:w-12 h-10 sm:h-12 rounded-full object-cover border-2 border-[#CF9F0E] shrink-0"
-                  />
+                <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-slate-100 flex items-center justify-between">
                   <div className="min-w-0 flex-1">
                     <h3 className="text-sm sm:text-base font-bold text-[#080533] font-heading group-hover:text-[#CF9F0E] transition-colors flex items-center gap-1 truncate">
                       <span className="truncate">{item.name}</span>
